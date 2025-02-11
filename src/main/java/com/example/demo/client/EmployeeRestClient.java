@@ -28,7 +28,7 @@ public class EmployeeRestClient {
 
     public void addNewEmployee(Employee employee) {
         HttpEntity<Employee> request = new HttpEntity<>(employee, headers);
-        restTemplate.exchange(url, HttpMethod.PUT, request, Employee.class);
+        restTemplate.exchange(url, HttpMethod.POST, request, Employee.class);
     }
 
     public Employee[] getAllEmployees() {

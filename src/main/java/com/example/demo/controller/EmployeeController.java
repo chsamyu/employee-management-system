@@ -19,7 +19,7 @@ public class EmployeeController {
 
     private final EmployeeService employeeService;
 
-    @PutMapping
+    @PostMapping
     public ResponseEntity<Employee> addNewEmployee(@RequestBody Employee employee) {
         log.info("Received request to add an employee : {}", employee);
         return ResponseEntity.ok(employeeService.addNewEmployee(employee));
