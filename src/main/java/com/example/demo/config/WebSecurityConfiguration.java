@@ -31,8 +31,15 @@ public class WebSecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
+
                 .authorizeHttpRequests(authorizationManagerRequestMatcherRegistry ->
                         authorizationManagerRequestMatcherRegistry
+                                .requestMatchers(
+                                        "/v3/api-docs/**",
+                                        "/swagger-ui/**",
+                                        "/swagger-ui.html",
+                                        "/webjars/**"
+                                ).permitAll()  // Allow Swagger
                                 .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults());
         http.addFilterAfter(new LoggingFilter(), BasicAuthenticationFilter.class);
